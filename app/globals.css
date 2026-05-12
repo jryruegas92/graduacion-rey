@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --berkeley-blue: #003262;
+  --california-gold: #FDB515;
+  --cream: #FAF8F3;
+  --ink: #0F1A2B;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+body {
+  background: var(--cream);
+  color: var(--ink);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+}
+
+.italic-accent {
+  font-style: italic;
+  color: var(--california-gold);
+  font-feature-settings: "swsh", "ss02";
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--california-gold-dark, #C99700);
+}
+
+.bg-hero {
+  background:
+    radial-gradient(1200px 600px at 20% 0%, rgba(253, 181, 21, 0.18), transparent 60%),
+    radial-gradient(900px 500px at 80% 30%, rgba(93, 169, 233, 0.12), transparent 60%),
+    linear-gradient(180deg, #001f3f 0%, #003262 55%, #003a73 100%);
+}
+
+.bg-cream-gradient {
+  background: linear-gradient(180deg, #FAF8F3 0%, #F2EEE3 100%);
+}
+
+.gold-rule {
+  position: relative;
+  display: inline-block;
+}
+.gold-rule::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 4px;
+  background: var(--california-gold);
+  border-radius: 2px;
+}
+
+.card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 40px -12px rgba(0, 50, 98, 0.25);
+}
+
+.nav-blur {
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+}
