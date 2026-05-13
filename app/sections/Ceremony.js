@@ -1,4 +1,7 @@
 export default function Ceremony() {
+  const greekMaps =
+    "https://www.google.com/maps/search/?api=1&query=Greek+Theatre+UC+Berkeley+2001+Gayley+Rd";
+
   return (
     <section id="ceremonia" className="bg-berkeley-blue text-cream py-20 md:py-28 relative overflow-hidden">
       <div
@@ -24,11 +27,23 @@ export default function Ceremony() {
             <div className="text-xs uppercase tracking-widest text-california-gold mb-2">
               Sede
             </div>
-            <div className="text-2xl font-serif">Greek Theatre</div>
+            <a
+              href={greekMaps}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-2xl font-serif underline underline-offset-4 hover:text-california-gold transition-colors"
+            >
+              Greek Theatre
+            </a>
             <div className="text-cream/80">UC Berkeley · 2001 Gayley Rd</div>
-            <div className="text-cream/60 text-sm mt-1">
-              ~8 min caminando de mi casa
-            </div>
+            <a
+              href={greekMaps}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block mt-2 text-sm text-california-gold hover:text-cream transition-colors"
+            >
+              Abrir en Google Maps →
+            </a>
           </div>
           <div>
             <div className="text-xs uppercase tracking-widest text-california-gold mb-2">
@@ -48,51 +63,63 @@ export default function Ceremony() {
             <ul className="mt-4 space-y-3 text-cream/90">
               <li className="flex gap-3">
                 <span className="text-california-gold">→</span>
-                Llegar entre <strong>1:00 – 1:30 PM</strong> para conseguir buenos lugares.
-              </li>
-              <li className="flex gap-3">
-                <span className="text-california-gold">→</span>
                 <span>
-                  <strong>Boleto requerido</strong> para entrar al Greek Theatre. Yo se los doy.
+                  Llegar entre <strong>1:00 y 1:30 PM</strong> para conseguir
+                  buenos lugares.
                 </span>
               </li>
               <li className="flex gap-3">
                 <span className="text-california-gold">→</span>
-                Uber/Lyft hasta el Greek Theatre. No hay parking en campus.
+                <span>
+                  <strong>Boleto requerido</strong> para entrar al Greek
+                  Theatre. Yo se los entrego.
+                </span>
               </li>
               <li className="flex gap-3">
                 <span className="text-california-gold">→</span>
-                Asientos son escalones de piedra, traer capa ligera.
+                <span>Uber o Lyft al Greek Theatre — no hay parking en campus.</span>
               </li>
               <li className="flex gap-3">
                 <span className="text-california-gold">→</span>
-                Cada familia recibe 2 programas impresos como recuerdo.
+                <span>Los asientos son escalones de piedra: traigan una capa ligera.</span>
+              </li>
+              <li className="flex gap-3">
+                <span className="text-california-gold">→</span>
+                <span>Cada familia recibe 2 programas impresos como recuerdo.</span>
               </li>
             </ul>
           </div>
 
           <div className="bg-california-gold text-berkeley-blue rounded-2xl p-6">
             <div className="text-berkeley-blue/70 text-sm font-semibold uppercase tracking-widest">
-              Para mí (Rey)
+              Para mí
             </div>
             <ul className="mt-4 space-y-3">
               <li className="flex gap-3">
                 <span>🎓</span>
-                Llego al Greek Theatre <strong>~12:30 PM</strong> en regalia completa.
+                <span>
+                  Llego al Greek Theatre alrededor de las{" "}
+                  <strong>12:30 PM</strong> en regalia completa.
+                </span>
               </li>
               <li className="flex gap-3">
                 <span>📍</span>
-                Entrada por el <strong>lado sur</strong> (cerca de Haas / Memorial Stadium).
+                <span>
+                  Entrada por el <strong>lado sur</strong>, cerca de Haas y
+                  Memorial Stadium.
+                </span>
               </li>
               <li className="flex gap-3">
                 <span>⚠️</span>
                 <span>
-                  <strong>No me esperen ver antes</strong> de que empiece la ceremonia.
+                  No me van a ver antes de que empiece la ceremonia — todo bien.
                 </span>
               </li>
               <li className="flex gap-3">
                 <span>🤝</span>
-                Nos vemos en la recepción de Haas Courtyard a las 4 PM.
+                <span>
+                  Nos vemos en la recepción del Haas Courtyard a las 4 PM.
+                </span>
               </li>
             </ul>
           </div>

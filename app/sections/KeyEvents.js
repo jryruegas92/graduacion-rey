@@ -1,53 +1,68 @@
-const events = [
+const columns = [
   {
-    date: "Mié 20",
-    time: "7–10 PM",
-    title: "Gala \"One More Time\"",
-    emoji: "🥂",
-    who: "Rey + Ana Ceci",
-    place: "SF Melody · 906 Broadway, SF",
+    weekday: "Miércoles",
+    date: "20 de mayo",
     accent: "from-berkeley-blue to-berkeley-blue-dark",
-    label: "Solo nosotros dos",
+    headerText: "text-cream",
+    eyebrow: "text-california-gold",
+    events: [
+      {
+        time: "7:00 – 10:00 PM",
+        title: "Graduation Gala",
+        subtitle: "“One More Time”",
+        place: "SF Melody · 906 Broadway, San Francisco",
+        note: "Evento de la MBAA · solo Rey y Ana Ceci",
+        emoji: "🥂",
+      },
+    ],
   },
   {
-    date: "Vie 22",
-    time: "5–9 PM",
-    title: "Family Welcome Reception",
-    emoji: "🌅",
-    who: "Todos · $20 por persona",
-    place: "Point San Pablo Harbor",
+    weekday: "Viernes",
+    date: "22 de mayo",
     accent: "from-california-gold-dark to-california-gold",
-    label: "Todos invitados",
+    headerText: "text-berkeley-blue",
+    eyebrow: "text-berkeley-blue/70",
+    events: [
+      {
+        time: "5:00 – 9:00 PM",
+        title: "Family Welcome Reception",
+        subtitle: "“Disorientation”",
+        place: "Point San Pablo Harbor",
+        note: "Atardecer junto al agua · todos invitados",
+        emoji: "🌅",
+      },
+    ],
   },
   {
-    date: "Sáb 23",
-    time: "2–4 PM",
-    title: "Commencement Ceremony",
-    emoji: "🎓",
-    who: "Todos · boleto requerido",
-    place: "Greek Theatre · UC Berkeley",
+    weekday: "Sábado",
+    date: "23 de mayo",
     accent: "from-berkeley-blue to-berkeley-blue-dark",
-    label: "EL día",
-  },
-  {
-    date: "Sáb 23",
-    time: "4–6 PM",
-    title: "Commencement Reception",
-    emoji: "🥂",
-    who: "Todos",
-    place: "Haas Courtyard",
-    accent: "from-california-gold-dark to-california-gold",
-    label: "Brindis post-ceremonia",
-  },
-  {
-    date: "Sáb 23",
-    time: "Por confirmar",
-    title: "Cena de graduación",
-    emoji: "🍽️",
-    who: "Por confirmar",
-    place: "Lugar por confirmar",
-    accent: "from-berkeley-blue to-berkeley-blue-dark",
-    label: "Detalles próximamente",
+    headerText: "text-cream",
+    eyebrow: "text-california-gold",
+    badge: "EL día",
+    events: [
+      {
+        time: "2:00 – 4:00 PM",
+        title: "Commencement Ceremony",
+        place: "Greek Theatre · UC Berkeley",
+        note: "Boleto requerido · llegar 1:00–1:30 PM",
+        emoji: "🎓",
+      },
+      {
+        time: "4:00 – 6:00 PM",
+        title: "Commencement Reception",
+        place: "Haas Courtyard",
+        note: "Brindis post-ceremonia",
+        emoji: "🥂",
+      },
+      {
+        time: "Por confirmar",
+        title: "Cena de graduación",
+        place: "Lugar por confirmar",
+        note: "Detalles próximamente",
+        emoji: "🍽️",
+      },
+    ],
   },
 ];
 
@@ -60,37 +75,56 @@ export default function KeyEvents() {
           Eventos <span className="italic text-california-gold-dark">clave</span>
         </h2>
         <p className="text-center text-ink/70 mt-4 max-w-xl mx-auto">
-          Los cinco momentos importantes de la semana. Todo lo demás es opcional.
+          Tres días con plan. Todo lo demás de la semana es opcional.
         </p>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mt-12">
-          {events.map((e, i) => (
+        <div className="grid md:grid-cols-3 gap-5 mt-12">
+          {columns.map((col, i) => (
             <div
               key={i}
-              className={`card bg-white rounded-2xl overflow-hidden shadow-soft border border-berkeley-blue/5`}
+              className="bg-white rounded-2xl overflow-hidden shadow-soft border border-berkeley-blue/5 flex flex-col"
             >
               <div
-                className={`bg-gradient-to-br ${e.accent} text-cream px-5 py-4 flex items-baseline justify-between`}
+                className={`bg-gradient-to-br ${col.accent} ${col.headerText} px-5 py-5`}
               >
-                <div>
-                  <div className="text-xs uppercase tracking-widest opacity-80">
-                    {e.date}
+                <div
+                  className={`text-[11px] uppercase tracking-widest ${col.eyebrow}`}
+                >
+                  {col.weekday}
+                </div>
+                <div className="font-serif text-3xl mt-1">{col.date}</div>
+                {col.badge && (
+                  <div className="mt-2 inline-block text-[10px] uppercase tracking-widest bg-cream/15 px-2 py-1 rounded-full">
+                    {col.badge}
                   </div>
-                  <div className="text-lg font-semibold mt-0.5">{e.time}</div>
-                </div>
-                <div className="text-3xl" aria-hidden>
-                  {e.emoji}
-                </div>
+                )}
               </div>
-              <div className="px-5 py-5">
-                <div className="inline-block text-[10px] uppercase tracking-widest bg-berkeley-blue/5 text-berkeley-blue px-2 py-1 rounded-full mb-3">
-                  {e.label}
-                </div>
-                <h3 className="font-serif text-xl text-berkeley-blue">
-                  {e.title}
-                </h3>
-                <p className="text-sm text-ink/70 mt-2">{e.place}</p>
-                <p className="text-sm text-ink/60 mt-1">{e.who}</p>
+              <div className="px-5 py-5 space-y-5 flex-1">
+                {col.events.map((e, j) => (
+                  <div
+                    key={j}
+                    className="border-l-2 border-california-gold/60 pl-4"
+                  >
+                    <div className="flex items-baseline justify-between gap-2">
+                      <div className="text-xs uppercase tracking-widest text-california-gold-dark">
+                        {e.time}
+                      </div>
+                      <div className="text-xl" aria-hidden>
+                        {e.emoji}
+                      </div>
+                    </div>
+                    <h3 className="font-serif text-lg text-berkeley-blue mt-1">
+                      {e.title}
+                    </h3>
+                    {e.subtitle && (
+                      <div className="text-sm italic text-ink/60">
+                        {e.subtitle}
+                      </div>
+                    )}
+                    <p className="text-sm text-ink/75 mt-1">{e.place}</p>
+                    <p className="text-xs text-ink/55 mt-0.5">{e.note}</p>
+                  </div>
+                ))}
               </div>
             </div>
           ))}

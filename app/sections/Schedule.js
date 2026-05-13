@@ -1,152 +1,163 @@
-const days = [
+const week = [
   {
-    day: "Martes",
-    date: "19 mayo",
-    title: "Llegada familia",
-    accent: false,
-    items: [
+    weekday: "Mar",
+    date: 19,
+    events: [
       {
-        time: "Noche · SFO",
-        head: "Llegan Papá, Mamá, Fabritzio y Ganesha",
-        body: "Bienvenidos al Bay Area. ¡Ya están aquí los primeros!",
+        time: "Noche",
+        title: "Llegan Mamá, Papá, Fabri y Ganesha",
+        kind: "arrival",
       },
     ],
   },
   {
-    day: "Miércoles",
-    date: "20 mayo",
-    title: "Más llegadas + Gala",
-    accent: false,
-    items: [
+    weekday: "Mié",
+    date: 20,
+    accent: true,
+    events: [
+      { time: "Madrugada", title: "Llega Elisa", kind: "arrival" },
+      { time: "Mediodía", title: "Llega Ana Ceci", kind: "arrival" },
       {
-        time: "Madrugada · SFO",
-        head: "Llega Elisa",
-        body: "Hermana en territorio.",
-      },
-      {
-        time: "Mediodía · SFO",
-        head: "Llega Ana Ceci",
-        body: "Mi persona favorita aterriza.",
-      },
-      {
-        time: "7:00 – 10:00 PM",
-        head: "Graduation Gala — “One More Time” 🥂",
-        body:
-          "SF Melody · 906 Broadway, San Francisco. Solo Rey y Ana Ceci. Evento de la MBAA, cocktail attire.",
-        highlight: true,
+        time: "7 – 10 PM",
+        title: "Graduation Gala",
+        place: "SF Melody",
+        kind: "event",
+        emoji: "🥂",
       },
     ],
   },
   {
-    day: "Jueves",
-    date: "21 mayo",
-    title: "Día libre",
-    accent: false,
-    items: [
+    weekday: "Jue",
+    date: 21,
+    events: [
       {
         time: "Todo el día",
-        head: "Tiempo libre · explorar Berkeley o SF",
-        body:
-          "Sin agenda fija. Sugerencias: brunch en Rockridge, paseo por Telegraph, BART a San Francisco, Lake Merritt. Revisa la sección de Recomendaciones.",
+        title: "Tiempo libre",
+        kind: "free",
       },
     ],
   },
   {
-    day: "Viernes",
-    date: "22 mayo",
-    title: "Family Welcome Reception",
+    weekday: "Vie",
+    date: 22,
     accent: true,
-    items: [
+    events: [
       {
-        time: "Mediodía · SFO",
-        head: "Llegan Julio + Georgette, Remi, Diego, Juan Carlos",
-        body: "Vidal + Isa y Hari ya están en el Bay Area y se nos juntan en la noche.",
+        time: "Mediodía",
+        title: "Llegan Julio, Georgette, Remi, Diego, Juan Carlos",
+        kind: "arrival",
       },
       {
-        time: "5:00 – 9:00 PM",
-        head: "“Disorientation” Family Welcome Reception 🌅",
-        body:
-          "Point San Pablo Harbor · $20/persona. Atardecer junto al agua, comida y bebida en sitio. Casual, traer capa — enfría junto al agua.",
-        highlight: true,
+        time: "5 – 9 PM",
+        title: "Family Welcome Reception",
+        place: "Point San Pablo",
+        kind: "event",
+        emoji: "🌅",
       },
     ],
   },
   {
-    day: "Sábado",
-    date: "23 mayo",
-    title: "🎓 Ceremonia",
+    weekday: "Sáb 🎓",
+    date: 23,
     accent: true,
-    items: [
+    ceremony: true,
+    events: [
       {
-        time: "12:30 PM",
-        head: "Rey sale al Greek Theatre",
-        body: "En regalia completa, entrada lado sur.",
+        time: "2 – 4 PM",
+        title: "Commencement Ceremony",
+        place: "Greek Theatre",
+        kind: "event",
+        emoji: "🎓",
+        primary: true,
       },
       {
-        time: "1:00 – 1:30 PM",
-        head: "Invitados llegan al Greek Theatre",
-        body: "Uber/Lyft. Boleto obligatorio.",
+        time: "4 – 6 PM",
+        title: "Reception",
+        place: "Haas Courtyard",
+        kind: "event",
+        emoji: "🥂",
       },
       {
-        time: "2:00 – 4:00 PM",
-        head: "Commencement Ceremony",
-        body: "Greek Theatre, UC Berkeley.",
-        highlight: true,
+        time: "Noche",
+        title: "Cena de graduación",
+        place: "Por confirmar",
+        kind: "event",
+        emoji: "🍽️",
       },
-      {
-        time: "4:00 – 6:00 PM",
-        head: "Commencement Reception",
-        body: "Haas Courtyard. Comida, bebidas, fotos.",
-      },
+    ],
+  },
+  {
+    weekday: "Dom",
+    date: 24,
+    events: [{ time: "Todo el día", title: "Día abierto", kind: "free" }],
+  },
+  {
+    weekday: "Lun",
+    date: 25,
+    events: [
+      { time: "Todo el día", title: "Memorial Day", kind: "free" },
+    ],
+  },
+  {
+    weekday: "Mar",
+    date: 26,
+    events: [
       {
         time: "Por confirmar",
-        head: "Cena de graduación 🍽️",
-        body: "Lugar y hora por confirmar.",
-      },
-    ],
-  },
-  {
-    day: "Domingo",
-    date: "24 mayo",
-    title: "Por definir",
-    accent: false,
-    items: [
-      {
-        time: "Plan por definir",
-        head: "Día abierto",
-        body:
-          "Buenas opciones: brunch en Berkeley, día en San Francisco, ferry a Sausalito, o relajarse antes de las despedidas.",
-      },
-    ],
-  },
-  {
-    day: "Lunes",
-    date: "25 mayo",
-    title: "Memorial Day",
-    accent: false,
-    items: [
-      {
-        time: "Todo el día",
-        head: "Feriado nacional",
-        body:
-          "Casi todo abierto. Excelente día para SF (menos tráfico) o un paseo por las colinas.",
-      },
-    ],
-  },
-  {
-    day: "Martes",
-    date: "26 mayo",
-    title: "Despedidas",
-    accent: false,
-    items: [
-      {
-        time: "Por confirmar",
-        head: "Salidas escalonadas",
-        body: "Detalles de vuelos por confirmar.",
+        title: "Despedidas escalonadas",
+        kind: "arrival",
       },
     ],
   },
 ];
+
+function EventBlock({ e, ceremony }) {
+  // Visual tiers: ceremony day primary > regular event > arrival > free.
+  if (e.kind === "free") {
+    return (
+      <div className="rounded-lg bg-cream/60 border border-berkeley-blue/10 px-2 py-2">
+        <div className="text-[9px] uppercase tracking-widest text-ink/50">
+          {e.time}
+        </div>
+        <div className="text-xs text-ink/70 italic mt-0.5">{e.title}</div>
+      </div>
+    );
+  }
+
+  if (e.kind === "arrival") {
+    return (
+      <div className="rounded-lg bg-white border border-berkeley-blue/15 px-2 py-2">
+        <div className="text-[9px] uppercase tracking-widest text-california-gold-dark">
+          {e.time}
+        </div>
+        <div className="text-xs text-berkeley-blue font-medium mt-0.5 leading-snug">
+          ✈️ {e.title}
+        </div>
+      </div>
+    );
+  }
+
+  // event
+  const bg = e.primary
+    ? "bg-california-gold text-berkeley-blue border-california-gold-dark"
+    : ceremony
+    ? "bg-cream text-berkeley-blue border-cream/40"
+    : "bg-berkeley-blue text-cream border-berkeley-blue";
+  return (
+    <div className={`rounded-lg border px-2 py-2 ${bg}`}>
+      <div className="flex items-baseline justify-between gap-1">
+        <span className="text-[9px] uppercase tracking-widest opacity-80">
+          {e.time}
+        </span>
+        {e.emoji && <span className="text-sm">{e.emoji}</span>}
+      </div>
+      <div className="text-xs font-semibold mt-0.5 leading-snug">{e.title}</div>
+      {e.place && (
+        <div className="text-[10px] opacity-75 mt-0.5">{e.place}</div>
+      )}
+    </div>
+  );
+}
 
 export default function Schedule() {
   return (
@@ -157,65 +168,37 @@ export default function Schedule() {
           Día por <span className="italic text-california-gold-dark">día</span>
         </h2>
         <p className="text-ink/70 mt-4 max-w-2xl">
-          Una semana de mayo entre llegadas, un puerto al atardecer, una
-          ceremonia, y los que nos importan.
+          Vista de calendario para las dos semanas. Los tres días resaltados son
+          los que sí tienen plan fijo.
         </p>
 
-        <div className="mt-14 space-y-12">
-          {days.map((d, i) => (
-            <div key={i} className="grid md:grid-cols-[180px_1fr] gap-6">
-              <div className="md:sticky md:top-24 md:self-start">
-                <div className="text-xs uppercase tracking-widest text-california-gold-dark">
-                  {d.day}
+        <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+          {week.map((d, i) => (
+            <div
+              key={i}
+              className={`flex flex-col rounded-2xl overflow-hidden border ${
+                d.accent
+                  ? "border-california-gold/50 shadow-gold"
+                  : "border-berkeley-blue/10 shadow-soft"
+              } bg-white`}
+            >
+              <div
+                className={`px-3 py-2 text-center ${
+                  d.ceremony
+                    ? "bg-berkeley-blue text-cream"
+                    : d.accent
+                    ? "bg-california-gold/15 text-berkeley-blue"
+                    : "bg-cream/60 text-berkeley-blue"
+                }`}
+              >
+                <div className="text-[10px] uppercase tracking-widest opacity-70">
+                  {d.weekday}
                 </div>
-                <div className="font-serif text-3xl text-berkeley-blue">
-                  {d.date}
-                </div>
-                <div
-                  className={`mt-2 text-sm ${
-                    d.accent ? "text-california-gold-dark font-semibold" : "text-ink/60"
-                  }`}
-                >
-                  {d.title}
-                </div>
+                <div className="font-serif text-xl leading-tight">{d.date}</div>
               </div>
-              <div className="space-y-4 border-l border-berkeley-blue/15 pl-6">
-                {d.items.map((it, j) => (
-                  <div
-                    key={j}
-                    className={`relative ${
-                      it.highlight
-                        ? "bg-berkeley-blue text-cream"
-                        : "bg-white"
-                    } rounded-xl p-5 shadow-soft border border-berkeley-blue/5`}
-                  >
-                    <span
-                      className={`absolute -left-[31px] top-6 w-3 h-3 rounded-full ${
-                        it.highlight ? "bg-california-gold" : "bg-berkeley-blue/30"
-                      } ring-4 ring-cream`}
-                    />
-                    <div
-                      className={`text-xs uppercase tracking-widest ${
-                        it.highlight ? "text-california-gold" : "text-california-gold-dark"
-                      }`}
-                    >
-                      {it.time}
-                    </div>
-                    <div
-                      className={`font-serif text-lg mt-1 ${
-                        it.highlight ? "" : "text-berkeley-blue"
-                      }`}
-                    >
-                      {it.head}
-                    </div>
-                    <p
-                      className={`text-sm mt-1 ${
-                        it.highlight ? "text-cream/85" : "text-ink/70"
-                      }`}
-                    >
-                      {it.body}
-                    </p>
-                  </div>
+              <div className="p-2 space-y-1.5 flex-1">
+                {d.events.map((e, j) => (
+                  <EventBlock key={j} e={e} ceremony={d.ceremony} />
                 ))}
               </div>
             </div>

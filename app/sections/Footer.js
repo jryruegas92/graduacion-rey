@@ -11,7 +11,7 @@ export default function Footer() {
           Rey · Berkeley Haas MBA 2026
         </p>
         <p className="text-ink/50 text-xs mt-8 uppercase tracking-widest">
-          20 – 26 de mayo, 2026 · Berkeley, California
+          19 – 30 de mayo, 2026 · Berkeley, California
         </p>
       </div>
     </footer>
