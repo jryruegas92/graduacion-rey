@@ -29,6 +29,14 @@ const pins = [
   },
 ];
 
+// Multi-stop embed: renders all four points as numbered pins on the map.
+const multiPinEmbed =
+  "https://maps.google.com/maps?saddr=2486+Hilgard+Ave+Berkeley+CA+94709" +
+  "&daddr=Greek+Theatre+UC+Berkeley" +
+  "+to:Haas+School+of+Business+UC+Berkeley" +
+  "+to:Point+San+Pablo+Harbor" +
+  "&output=embed";
+
 export default function MapSection() {
   return (
     <section id="mapa" className="bg-cream py-20 md:py-28">
@@ -38,8 +46,8 @@ export default function MapSection() {
           El <span className="italic text-california-gold-dark">mapa</span>
         </h2>
         <p className="text-ink/70 mt-4 max-w-2xl">
-          Tres puntos clave en el Bay Area. Toquen cualquier tarjeta para
-          abrir en su app de mapas.
+          Cuatro puntos clave en el Bay Area. Toquen cualquier tarjeta para
+          abrirlo en Google Maps.
         </p>
 
         <div className="grid md:grid-cols-2 gap-5 mt-12">
@@ -51,7 +59,12 @@ export default function MapSection() {
               rel="noopener noreferrer"
               className="card bg-white rounded-2xl p-6 shadow-soft border border-berkeley-blue/5 flex items-start gap-4 group"
             >
-              <div className="text-4xl">{p.emoji}</div>
+              <div className="flex flex-col items-center gap-1 shrink-0">
+                <div className="text-4xl">{p.emoji}</div>
+                <div className="text-[10px] font-bold text-berkeley-blue bg-california-gold rounded-full w-6 h-6 flex items-center justify-center">
+                  {i + 1}
+                </div>
+              </div>
               <div className="flex-1">
                 <div className="text-xs uppercase tracking-widest text-california-gold-dark">
                   {p.title}
@@ -68,18 +81,23 @@ export default function MapSection() {
           ))}
         </div>
 
-        {/* embedded Google Map centered on Berkeley */}
+        {/* Embedded map with all four locations pinned */}
         <div className="mt-10 rounded-2xl overflow-hidden shadow-soft border border-berkeley-blue/10">
           <iframe
-            title="Berkeley & Bay Area"
-            src="https://www.google.com/maps?q=Berkeley,CA&output=embed"
+            title="Puntos clave en Berkeley y Bay Area"
+            src={multiPinEmbed}
             width="100%"
-            height="420"
+            height="480"
             style={{ border: 0 }}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           />
         </div>
+        <p className="text-xs text-ink/55 mt-3">
+          El mapa muestra las cuatro paradas numeradas (mi casa → Greek Theatre
+          → Haas Courtyard → Point San Pablo Harbor). La línea entre ellas es
+          solo referencia visual.
+        </p>
       </div>
     </section>
   );

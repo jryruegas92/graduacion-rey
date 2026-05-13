@@ -16,13 +16,13 @@ export default function Hero() {
         </p>
         <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl leading-[1.05] tracking-tight">
           Graduación{" "}
-          <span className="italic-accent">Rey</span>
+          <span className="italic-accent">Rey Yruegas</span>
         </h1>
         <p className="mt-8 text-cream/90 text-lg md:text-xl max-w-2xl">
           MBA 2026 · Bienvenidos a Berkeley
         </p>
         <p className="mt-2 text-california-gold font-medium text-lg md:text-xl">
-          20 – 26 de mayo, 2026
+          19 – 30 de mayo, 2026 · Ceremonia sábado 23
         </p>
 
         <div className="mt-12 flex flex-wrap gap-3">
@@ -51,8 +51,16 @@ export default function Hero() {
         <div className="max-w-6xl mx-auto px-5 py-3 text-sm md:text-base flex items-center gap-2 flex-wrap">
           <span aria-hidden>📍</span>
           <span>
-            Mi casa: <strong>2486 Hilgard Ave, Berkeley, CA 94709</strong> —
-            punto de referencia para la semana.
+            Mi casa:{" "}
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=2486+Hilgard+Ave+Berkeley+CA+94709"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-2 font-semibold hover:text-berkeley-blue-dark"
+            >
+              2486 Hilgard Ave, Berkeley, CA 94709
+            </a>{" "}
+            — punto de referencia para la semana.
           </span>
         </div>
       </div>
@@ -70,8 +78,8 @@ export default function Hero() {
           <p className="mt-6 text-lg text-ink/80 leading-relaxed">
             Familia, amigos — esta pequeña guía tiene todo lo que necesitan para
             disfrutar Berkeley, estar presentes en el gran día, y aprovechar la
-            semana. Si tienen dudas, me llaman a mí o a Ana Ceci. Gracias por
-            venir desde tan lejos para acompañarnos.
+            semana. Si tienen dudas, me escriben directo. Gracias por venir
+            desde tan lejos para acompañarnos.
           </p>
           <p className="mt-8 font-serif text-2xl text-berkeley-blue italic">
             — Rey

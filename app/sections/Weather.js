@@ -23,8 +23,9 @@ export default function Weather() {
         </h2>
         <p className="text-ink/70 mt-4 max-w-2xl">
           Finales de mayo en Berkeley es perfecto. Mañanas frescas, tardes
-          cálidas, casi nada de lluvia. Traer chamarra ligera para las noches —
-          la ceremonia en el Greek Theatre es al aire libre.
+          cálidas, casi nada de lluvia. El <strong>sábado 23</strong> —
+          ceremonia al aire libre en el Greek Theatre — debería estar soleado y
+          en los 70s°F. Traigan chamarra ligera para las noches.
         </p>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3 mt-12">

@@ -7,24 +7,7 @@ const categories = [
   { emoji: "🌉", label: "San Francisco" },
 ];
 
-const nearby = [
-  {
-    name: "Cheese Board Pizza",
-    note: "Legendario. Pizza de horno, lista distinta cada día. Cola larga pero vale.",
-  },
-  {
-    name: "Indian Rock Park",
-    note: "5 min de la casa. Mirador con vista al Bay Bridge y al atardecer.",
-  },
-  {
-    name: "North Berkeley Farmers Market",
-    note: "Jueves por la tarde. Productos locales, café, ambiente del barrio.",
-  },
-  {
-    name: "Saul's Deli",
-    note: "Deli judío clásico. Buen desayuno y sándwiches.",
-  },
-];
+const LIST_URL = "https://maps.app.goo.gl/9VsD2fr5RXwaVG7A7";
 
 export default function Recommendations() {
   return (
@@ -36,13 +19,13 @@ export default function Recommendations() {
           <span className="italic text-california-gold-dark">Rey</span>
         </h2>
         <p className="text-ink/70 mt-4 max-w-2xl">
-          Una lista de Google Maps que llevo curando hace mucho tiempo. Cafés,
+          Una lista grande en Google Maps que llevo curando hace años. Cafés,
           restaurantes, miradores, bares — todo lo bueno del Bay Area.
         </p>
 
         {/* Big CTA to Google Maps list */}
         <a
-          href="https://maps.app.goo.gl/9VsD2fr5RXwaVG7A7"
+          href={LIST_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-10 block card bg-gradient-to-br from-berkeley-blue to-berkeley-blue-dark text-cream rounded-2xl p-8 md:p-10 shadow-soft relative overflow-hidden"
@@ -63,8 +46,8 @@ export default function Recommendations() {
                 Abrir en Google Maps
               </h3>
               <p className="text-cream/80 mt-3 max-w-md">
-                Guárdala en tu cuenta para verla con un toque. Funciona en iPhone
-                y Android.
+                Guárdala en tu cuenta para verla con un toque. Funciona en
+                iPhone y Android.
               </p>
               <div className="mt-6 flex flex-wrap gap-2">
                 {categories.map((c, i) => (
@@ -83,26 +66,6 @@ export default function Recommendations() {
             Abrir lista →
           </div>
         </a>
-
-        {/* Curated nearby */}
-        <div className="mt-14">
-          <h3 className="font-serif text-2xl text-berkeley-blue">
-            A pocos pasos de mi casa
-          </h3>
-          <div className="grid sm:grid-cols-2 gap-4 mt-6">
-            {nearby.map((n, i) => (
-              <div
-                key={i}
-                className="card bg-white rounded-xl p-5 border border-berkeley-blue/10 shadow-soft"
-              >
-                <div className="font-serif text-lg text-berkeley-blue">
-                  {n.name}
-                </div>
-                <p className="text-sm text-ink/70 mt-1">{n.note}</p>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </section>
   );

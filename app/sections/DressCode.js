@@ -1,6 +1,3 @@
-// Mood board "look" cards rendered with CSS color swatches + outfit checklist.
-// Visual replacement for photo-based moodboards so the site is self-contained.
-
 function ColorPalette({ colors }) {
   return (
     <div className="flex gap-2">
@@ -17,12 +14,11 @@ function ColorPalette({ colors }) {
   );
 }
 
-function Look({ title, who, palette, yes, no, tip, accent = "blue" }) {
+function Look({ title, who, palette, yes, tip, accent = "blue" }) {
   const bg =
     accent === "gold"
       ? "bg-gradient-to-br from-[#FFF6DC] to-[#FBE7A8]"
       : "bg-gradient-to-br from-[#E9EEF7] to-[#CBD8EC]";
-  const header = accent === "gold" ? "text-berkeley-blue" : "text-berkeley-blue";
   return (
     <div className={`rounded-2xl overflow-hidden shadow-soft card ${bg}`}>
       <div className="p-6 flex items-start justify-between gap-4">
@@ -30,15 +26,17 @@ function Look({ title, who, palette, yes, no, tip, accent = "blue" }) {
           <div className="text-[10px] uppercase tracking-widest text-berkeley-blue/60">
             {who}
           </div>
-          <h4 className={`font-serif text-2xl mt-1 ${header}`}>{title}</h4>
+          <h4 className="font-serif text-2xl mt-1 text-berkeley-blue">
+            {title}
+          </h4>
         </div>
         <ColorPalette colors={palette} />
       </div>
 
-      <div className="px-6 pb-6 grid grid-cols-2 gap-4">
+      <div className="px-6 pb-6">
         <div className="bg-white/70 rounded-xl p-4">
           <div className="text-xs uppercase tracking-widest text-emerald-700 mb-2">
-            Sí
+            Ideas
           </div>
           <ul className="space-y-1.5 text-sm text-ink/85">
             {yes.map((y, i) => (
@@ -49,25 +47,14 @@ function Look({ title, who, palette, yes, no, tip, accent = "blue" }) {
             ))}
           </ul>
         </div>
-        <div className="bg-white/70 rounded-xl p-4">
-          <div className="text-xs uppercase tracking-widest text-rose-700 mb-2">
-            No
-          </div>
-          <ul className="space-y-1.5 text-sm text-ink/85">
-            {no.map((n, i) => (
-              <li key={i} className="flex gap-2">
-                <span className="text-rose-500">✕</span>
-                <span>{n}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
       </div>
 
       {tip && (
-        <div className="bg-berkeley-blue text-cream px-6 py-3 text-sm">
-          <span className="text-california-gold">Tip · </span>
-          {tip}
+        <div className="bg-berkeley-blue text-cream px-6 py-4 text-sm flex gap-3 items-start">
+          <span className="text-california-gold uppercase tracking-widest text-[10px] font-semibold pt-0.5 shrink-0">
+            Tip
+          </span>
+          <span className="text-cream/90 leading-relaxed">{tip}</span>
         </div>
       )}
     </div>
@@ -83,8 +70,8 @@ export default function DressCode() {
           Qué <span className="italic text-california-gold-dark">ponerse</span>
         </h2>
         <p className="text-ink/70 mt-4 max-w-2xl">
-          Dos eventos, dos vibras distintas. Nada de stress — abajo está la
-          guía rápida para cada uno.
+          Dos eventos, dos vibras. Vengan cómodos — si los tenis son lo
+          suyo, son bienvenidos (yo también los voy a traer).
         </p>
 
         {/* Friday */}
@@ -115,12 +102,7 @@ export default function DressCode() {
                 "Chino o jeans de buen corte",
                 "Camisa de lino o polo",
                 "Suéter ligero o overshirt",
-                "Sneakers limpios o loafers",
-              ]}
-              no={[
-                "Traje completo",
-                "Shorts deportivos",
-                "Sandalias chanclas",
+                "Sneakers o loafers",
               ]}
               tip="Trae chamarra ligera — al meterse el sol enfría junto al puerto."
               accent="gold"
@@ -138,12 +120,7 @@ export default function DressCode() {
                 "Vestido midi de tela ligera",
                 "Pantalón ancho + blusa",
                 "Cardigan o pashmina",
-                "Sandalia con plataforma o flat",
-              ]}
-              no={[
-                "Tacones aguja (piso de muelle)",
-                "Algo demasiado formal",
-                "Telas pesadas",
+                "Sandalia plana, plataforma o sneakers",
               ]}
               tip="El puerto es de tablas — zapato cómodo gana siempre."
               accent="gold"
@@ -181,12 +158,7 @@ export default function DressCode() {
                 "Blazer opcional",
                 "Mocasín, oxford o sneaker limpio",
               ]}
-              no={[
-                "Jeans rotos",
-                "Tenis deportivos",
-                "Shorts",
-              ]}
-              tip="Como yo no voy de traje (estoy en regalia), no se sientan obligados — camisa + pantalón formal es perfecto."
+              tip="Yo voy en regalia, así que no se sientan obligados a ponerse traje — camisa y pantalón formal es perfecto."
               accent="blue"
             />
             <Look
@@ -203,11 +175,6 @@ export default function DressCode() {
                 "Jumpsuit elegante",
                 "Blazer ligero o chal",
                 "Zapato cómodo (van a caminar)",
-              ]}
-              no={[
-                "Tacones de aguja altísimos",
-                "Algo demasiado revelador (es ceremonia)",
-                "Sneakers casuales",
               ]}
               tip="El Greek Theatre tiene asientos de piedra. Trae capa, enfría al final."
               accent="blue"
