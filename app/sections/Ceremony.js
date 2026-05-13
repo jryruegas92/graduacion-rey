@@ -15,25 +15,6 @@ export default function Ceremony() {
           Commencement <span className="italic text-california-gold">Ceremony</span>
         </h2>
 
-        <div className="mt-10 rounded-2xl overflow-hidden border border-california-gold/30 shadow-gold relative aspect-[16/7] bg-berkeley-blue-dark">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Hearst_Greek_Theatre_2016.jpg/1600px-Hearst_Greek_Theatre_2016.jpg"
-            alt="William Randolph Hearst Greek Theatre, UC Berkeley"
-            className="w-full h-full object-cover opacity-90"
-            loading="lazy"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-berkeley-blue/80 via-transparent to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 p-5 md:p-8">
-            <div className="text-xs uppercase tracking-widest text-california-gold">
-              Hearst Greek Theatre · UC Berkeley
-            </div>
-            <div className="font-serif text-2xl md:text-3xl text-cream mt-1">
-              Aquí nos vemos el sábado 23.
-            </div>
-          </div>
-        </div>
-
         <div className="grid md:grid-cols-3 gap-8 mt-16">
           <div>
             <div className="text-xs uppercase tracking-widest text-california-gold mb-2">

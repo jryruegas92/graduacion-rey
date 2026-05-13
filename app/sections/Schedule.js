@@ -1,56 +1,163 @@
-const days = [
+const week = [
   {
-    day: "Martes",
-    date: "19 mayo",
-    title: "Llegan Mamá, Papá, Fabri y Ganesha",
-    accent: false,
+    weekday: "Mar",
+    date: 19,
+    events: [
+      {
+        time: "Noche",
+        title: "Llegan Mamá, Papá, Fabri y Ganesha",
+        kind: "arrival",
+      },
+    ],
   },
   {
-    day: "Miércoles",
-    date: "20 mayo",
-    title: "Llega Elisa · Graduation Gala",
+    weekday: "Mié",
+    date: 20,
     accent: true,
-    highlight: "Gala 7–10 PM · SF Melody",
+    events: [
+      { time: "Madrugada", title: "Llega Elisa", kind: "arrival" },
+      { time: "Mediodía", title: "Llega Ana Ceci", kind: "arrival" },
+      {
+        time: "7 – 10 PM",
+        title: "Graduation Gala",
+        place: "SF Melody",
+        kind: "event",
+        emoji: "🥂",
+      },
+    ],
   },
   {
-    day: "Jueves",
-    date: "21 mayo",
-    title: "Día libre",
-    accent: false,
+    weekday: "Jue",
+    date: 21,
+    events: [
+      {
+        time: "Todo el día",
+        title: "Tiempo libre",
+        kind: "free",
+      },
+    ],
   },
   {
-    day: "Viernes",
-    date: "22 mayo",
-    title: "Llegan Julio, Georgette, Remi, Diego, Juan Carlos · Family Welcome Reception",
+    weekday: "Vie",
+    date: 22,
     accent: true,
-    highlight: "5–9 PM · Point San Pablo Harbor",
+    events: [
+      {
+        time: "Mediodía",
+        title: "Llegan Julio, Georgette, Remi, Diego, Juan Carlos",
+        kind: "arrival",
+      },
+      {
+        time: "5 – 9 PM",
+        title: "Family Welcome Reception",
+        place: "Point San Pablo",
+        kind: "event",
+        emoji: "🌅",
+      },
+    ],
   },
   {
-    day: "Sábado",
-    date: "23 mayo",
-    title: "🎓 Commencement",
+    weekday: "Sáb 🎓",
+    date: 23,
     accent: true,
-    highlight: "2–4 PM · Greek Theatre · todo el día",
+    ceremony: true,
+    events: [
+      {
+        time: "2 – 4 PM",
+        title: "Commencement Ceremony",
+        place: "Greek Theatre",
+        kind: "event",
+        emoji: "🎓",
+        primary: true,
+      },
+      {
+        time: "4 – 6 PM",
+        title: "Reception",
+        place: "Haas Courtyard",
+        kind: "event",
+        emoji: "🥂",
+      },
+      {
+        time: "Noche",
+        title: "Cena de graduación",
+        place: "Por confirmar",
+        kind: "event",
+        emoji: "🍽️",
+      },
+    ],
   },
   {
-    day: "Domingo",
-    date: "24 mayo",
-    title: "Día abierto",
-    accent: false,
+    weekday: "Dom",
+    date: 24,
+    events: [{ time: "Todo el día", title: "Día abierto", kind: "free" }],
   },
   {
-    day: "Lunes",
-    date: "25 mayo",
-    title: "Memorial Day",
-    accent: false,
+    weekday: "Lun",
+    date: 25,
+    events: [
+      { time: "Todo el día", title: "Memorial Day", kind: "free" },
+    ],
   },
   {
-    day: "Martes",
-    date: "26 mayo",
-    title: "Despedidas escalonadas",
-    accent: false,
+    weekday: "Mar",
+    date: 26,
+    events: [
+      {
+        time: "Por confirmar",
+        title: "Despedidas escalonadas",
+        kind: "arrival",
+      },
+    ],
   },
 ];
+
+function EventBlock({ e, ceremony }) {
+  // Visual tiers: ceremony day primary > regular event > arrival > free.
+  if (e.kind === "free") {
+    return (
+      <div className="rounded-lg bg-cream/60 border border-berkeley-blue/10 px-2 py-2">
+        <div className="text-[9px] uppercase tracking-widest text-ink/50">
+          {e.time}
+        </div>
+        <div className="text-xs text-ink/70 italic mt-0.5">{e.title}</div>
+      </div>
+    );
+  }
+
+  if (e.kind === "arrival") {
+    return (
+      <div className="rounded-lg bg-white border border-berkeley-blue/15 px-2 py-2">
+        <div className="text-[9px] uppercase tracking-widest text-california-gold-dark">
+          {e.time}
+        </div>
+        <div className="text-xs text-berkeley-blue font-medium mt-0.5 leading-snug">
+          ✈️ {e.title}
+        </div>
+      </div>
+    );
+  }
+
+  // event
+  const bg = e.primary
+    ? "bg-california-gold text-berkeley-blue border-california-gold-dark"
+    : ceremony
+    ? "bg-cream text-berkeley-blue border-cream/40"
+    : "bg-berkeley-blue text-cream border-berkeley-blue";
+  return (
+    <div className={`rounded-lg border px-2 py-2 ${bg}`}>
+      <div className="flex items-baseline justify-between gap-1">
+        <span className="text-[9px] uppercase tracking-widest opacity-80">
+          {e.time}
+        </span>
+        {e.emoji && <span className="text-sm">{e.emoji}</span>}
+      </div>
+      <div className="text-xs font-semibold mt-0.5 leading-snug">{e.title}</div>
+      {e.place && (
+        <div className="text-[10px] opacity-75 mt-0.5">{e.place}</div>
+      )}
+    </div>
+  );
+}
 
 export default function Schedule() {
   return (
@@ -61,51 +168,39 @@ export default function Schedule() {
           Día por <span className="italic text-california-gold-dark">día</span>
         </h2>
         <p className="text-ink/70 mt-4 max-w-2xl">
-          Lo esencial de la semana. Los tres días importantes están resaltados.
+          Vista de calendario para las dos semanas. Los tres días resaltados son
+          los que sí tienen plan fijo.
         </p>
 
-        <div className="mt-12 space-y-3">
-          {days.map((d, i) => (
+        <div className="mt-12 grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+          {week.map((d, i) => (
             <div
               key={i}
-              className={`rounded-xl border ${
+              className={`flex flex-col rounded-2xl overflow-hidden border ${
                 d.accent
-                  ? "bg-berkeley-blue text-cream border-california-gold/30 shadow-soft"
-                  : "bg-white text-ink border-berkeley-blue/10"
-              } p-5 grid md:grid-cols-[180px_1fr_auto] gap-4 items-baseline`}
+                  ? "border-california-gold/50 shadow-gold"
+                  : "border-berkeley-blue/10 shadow-soft"
+              } bg-white`}
             >
-              <div>
-                <div
-                  className={`text-xs uppercase tracking-widest ${
-                    d.accent ? "text-california-gold" : "text-california-gold-dark"
-                  }`}
-                >
-                  {d.day}
-                </div>
-                <div
-                  className={`font-serif text-2xl ${
-                    d.accent ? "text-cream" : "text-berkeley-blue"
-                  }`}
-                >
-                  {d.date}
-                </div>
-              </div>
               <div
-                className={`font-serif text-lg ${
-                  d.accent ? "text-cream" : "text-berkeley-blue"
+                className={`px-3 py-2 text-center ${
+                  d.ceremony
+                    ? "bg-berkeley-blue text-cream"
+                    : d.accent
+                    ? "bg-california-gold/15 text-berkeley-blue"
+                    : "bg-cream/60 text-berkeley-blue"
                 }`}
               >
-                {d.title}
-              </div>
-              {d.highlight && (
-                <div
-                  className={`text-sm ${
-                    d.accent ? "text-california-gold" : "text-ink/60"
-                  }`}
-                >
-                  {d.highlight}
+                <div className="text-[10px] uppercase tracking-widest opacity-70">
+                  {d.weekday}
                 </div>
-              )}
+                <div className="font-serif text-xl leading-tight">{d.date}</div>
+              </div>
+              <div className="p-2 space-y-1.5 flex-1">
+                {d.events.map((e, j) => (
+                  <EventBlock key={j} e={e} ceremony={d.ceremony} />
+                ))}
+              </div>
             </div>
           ))}
         </div>
