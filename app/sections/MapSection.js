@@ -1,3 +1,16 @@
+"use client";
+
+import dynamic from "next/dynamic";
+
+const PinMap = dynamic(() => import("./PinMap"), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[480px] w-full flex items-center justify-center text-ink/50 text-sm">
+      Cargando mapa…
+    </div>
+  ),
+});
+
 const pins = [
   {
     title: "Mi casa",
@@ -7,35 +20,27 @@ const pins = [
     maps: "https://www.google.com/maps/search/?api=1&query=2486+Hilgard+Ave+Berkeley+CA+94709",
   },
   {
-    title: "Viernes · Family Reception",
-    emoji: "🌅",
-    address: "Point San Pablo Harbor",
-    note: "Atardecer junto al agua · 5–9 PM",
-    maps: "https://www.google.com/maps/search/?api=1&query=Point+San+Pablo+Harbor",
-  },
-  {
-    title: "Sábado · Greek Theatre",
+    title: "Greek Theatre",
     emoji: "🎓",
     address: "2001 Gayley Rd, Berkeley, CA 94720",
-    note: "Ceremonia 2–4 PM · llegar 1:00–1:30 PM",
+    note: "Sábado · Ceremonia 2–4 PM · llegar 1:00–1:30 PM",
     maps: "https://www.google.com/maps/search/?api=1&query=Greek+Theatre+UC+Berkeley",
   },
   {
-    title: "Sábado · Haas Courtyard",
+    title: "Haas Courtyard",
     emoji: "🥂",
     address: "Haas School of Business, UC Berkeley",
-    note: "Recepción 4–6 PM · al lado del Greek",
+    note: "Sábado · Recepción 4–6 PM · al lado del Greek",
     maps: "https://www.google.com/maps/search/?api=1&query=Haas+School+of+Business+UC+Berkeley",
   },
+  {
+    title: "Point San Pablo Harbor",
+    emoji: "🌅",
+    address: "Point San Pablo Harbor, Richmond",
+    note: "Viernes · Family Reception 5–9 PM",
+    maps: "https://www.google.com/maps/search/?api=1&query=Point+San+Pablo+Harbor",
+  },
 ];
-
-// Multi-stop embed: renders all four points as numbered pins on the map.
-const multiPinEmbed =
-  "https://maps.google.com/maps?saddr=2486+Hilgard+Ave+Berkeley+CA+94709" +
-  "&daddr=Greek+Theatre+UC+Berkeley" +
-  "+to:Haas+School+of+Business+UC+Berkeley" +
-  "+to:Point+San+Pablo+Harbor" +
-  "&output=embed";
 
 export default function MapSection() {
   return (
@@ -46,11 +51,16 @@ export default function MapSection() {
           El <span className="italic text-california-gold-dark">mapa</span>
         </h2>
         <p className="text-ink/70 mt-4 max-w-2xl">
-          Cuatro puntos clave en el Bay Area. Toquen cualquier tarjeta para
-          abrirlo en Google Maps.
+          Cuatro puntos clave en el Bay Area. Pinchen un pin en el mapa o
+          cualquiera de las tarjetas para abrir Google Maps.
         </p>
 
-        <div className="grid md:grid-cols-2 gap-5 mt-12">
+        {/* Real multi-pin map */}
+        <div className="mt-10 rounded-2xl overflow-hidden shadow-soft border border-berkeley-blue/10">
+          <PinMap />
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-5 mt-10">
           {pins.map((p, i) => (
             <a
               key={i}
@@ -80,24 +90,6 @@ export default function MapSection() {
             </a>
           ))}
         </div>
-
-        {/* Embedded map with all four locations pinned */}
-        <div className="mt-10 rounded-2xl overflow-hidden shadow-soft border border-berkeley-blue/10">
-          <iframe
-            title="Puntos clave en Berkeley y Bay Area"
-            src={multiPinEmbed}
-            width="100%"
-            height="480"
-            style={{ border: 0 }}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-        </div>
-        <p className="text-xs text-ink/55 mt-3">
-          El mapa muestra las cuatro paradas numeradas (mi casa → Greek Theatre
-          → Haas Courtyard → Point San Pablo Harbor). La línea entre ellas es
-          solo referencia visual.
-        </p>
       </div>
     </section>
   );

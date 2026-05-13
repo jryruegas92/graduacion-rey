@@ -66,6 +66,12 @@ export default function Recommendations() {
             Abrir lista →
           </div>
         </a>
+
+        <p className="mt-6 text-xs text-ink/55 max-w-2xl">
+          La lista vive en Google Maps y se abre con todos los pines marcados
+          en tu app — no la puedo encrustar visualmente aquí porque Google no
+          permite embeber listas privadas.
+        </p>
       </div>
     </section>
   );

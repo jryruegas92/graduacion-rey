@@ -11,7 +11,7 @@ const columns = [
         title: "Graduation Gala",
         subtitle: "“One More Time”",
         place: "SF Melody · 906 Broadway, San Francisco",
-        note: "Evento de la MBAA · solo Rey",
+        note: "Evento de la MBAA · solo Rey y Ana Ceci",
         emoji: "🥂",
       },
     ],

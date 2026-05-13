@@ -21,7 +21,7 @@ const days = [
   {
     day: "Viernes",
     date: "22 mayo",
-    title: "Family Welcome Reception",
+    title: "Llegan Julio, Georgette, Remi, Diego, Juan Carlos · Family Welcome Reception",
     accent: true,
     highlight: "5–9 PM · Point San Pablo Harbor",
   },
